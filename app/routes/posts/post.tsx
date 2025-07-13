@@ -2,12 +2,59 @@ import { useLoaderData } from "react-router";
 import { getPost } from "~/models/post.model";
 import type { Route } from "./+types/post";
 
-async function loader({ params }: Route.LoaderArgs) {
+/* 
+So on this page first loader will run on the server side and the after that
+on Client side the `clientLoader()` will be wait for the server `loader()` to complete and 
+after that we will get the data return by the `loader()` in the clientLoader()` function via args.
+
+
+Reference link from react-router framework documentation : https://reactrouter.com/start/framework/data-loading#using-both-loaders
+*/
+
+export async function loader({ params }: Route.LoaderArgs) {
   return getPost(parseInt(params.id));
 }
 
+export async function clientLoader({ serverLoader }: Route.ClientLoaderArgs) {
+  const serverdata = await serverLoader();
+  console.log(serverdata);
+  return serverdata;
+}
+
+// force the client loader to run during hydration
+clientLoader.hydrate = true as const; // `as const` for type inference
+
+export function HydrateFallback() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      {" "}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        className="mr-1 size-10 text-zinc-900 motion-safe:animate-spin"
+      >
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        ></circle>
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        ></path>
+      </svg>
+      <span className="text-center mt-4">Loading your post</span>
+    </div>
+  );
+}
+
 const Post = ({}: Route.ComponentProps) => {
-  const post = useLoaderData<typeof loader>();
+  const post = useLoaderData<typeof clientLoader>();
 
   return (
     <div className="flex items-center justify-center min-h-screen">
@@ -25,21 +72,6 @@ const Post = ({}: Route.ComponentProps) => {
           className="inline-flex font-medium items-center text-blue-600 hover:underline"
         >
           {post?.published ? "Has been Published" : "Un Published"}
-          <svg
-            className="w-3 h-3 ms-2.5 rtl:rotate-[270deg]"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"
-            />
-          </svg>
         </a>
       </div>
     </div>
