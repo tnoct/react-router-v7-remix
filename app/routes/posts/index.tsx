@@ -9,7 +9,13 @@ const Posts = () => {
   const posts = useLoaderData<typeof loader>();
 
   return (
-    <div className="  min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex flex-col items-center justify-center">
+      <Link
+        className="bg-zinc-900 text-white px-5 py-3 rounded-2xl my-5"
+        to="create"
+      >
+        Create New Post
+      </Link>
       <table className="table-auto md:table-fixed">
         <thead>
           <tr>

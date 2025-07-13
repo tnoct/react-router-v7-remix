@@ -7,7 +7,24 @@ async function getPosts() {
 }
 
 async function getPost(id: number) {
-  return prisma.post.findUnique({ where: { id: id } });
+  return prisma.post.findUnique({
+    where: { id: id },
+    include: { author: true },
+  });
 }
 
-export { getPosts, getPost };
+async function createPost(title: string, content: string, published: boolean) {
+  return prisma.post.create({
+    data: { title, author: { connect: { id: 2 } }, content, published },
+  });
+}
+
+async function updatePost(title: string, content: string, id: number) {
+  return prisma.post.update({
+    data: { title, author: { connect: { id: 2 } }, content },
+    include: { author: true },
+    where: { id: id },
+  });
+}
+
+export { getPosts, getPost, createPost, updatePost };
