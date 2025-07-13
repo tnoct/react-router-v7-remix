@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import { getPosts } from "~/models/post.model";
 
 export async function loader() {
@@ -9,7 +9,7 @@ const Posts = () => {
   const posts = useLoaderData<typeof loader>();
 
   return (
-    <div className=" min-h-screen flex items-center justify-center">
+    <div className="  min-h-screen flex items-center justify-center">
       <table className="table-auto md:table-fixed">
         <thead>
           <tr>
@@ -26,6 +26,9 @@ const Posts = () => {
                 <td>{title}</td>
                 <td>{author?.name}</td>
                 <td>{content}</td>
+                <td>
+                  <Link to={`/posts/${id}`}>Check post</Link>
+                </td>
               </tr>
             );
           })}
