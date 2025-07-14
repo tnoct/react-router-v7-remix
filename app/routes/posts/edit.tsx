@@ -92,4 +92,9 @@ const EditPost = ({}: Route.ComponentProps) => {
   );
 };
 
+export async function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+  console.log("Error : ", Error);
+  return <p>Ops Something went wrong!</p>;
+}
+
 export default EditPost;

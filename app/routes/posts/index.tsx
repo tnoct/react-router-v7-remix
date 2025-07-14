@@ -1,5 +1,6 @@
 import { Link, useLoaderData } from "react-router";
 import { getPosts } from "~/models/post.model";
+import type { Route } from "./+types";
 
 export async function loader() {
   return getPosts();
@@ -43,5 +44,10 @@ const Posts = () => {
     </div>
   );
 };
+
+export async function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+  console.log("Error : ", error);
+  return <p>Ops Something went wrong!</p>;
+}
 
 export default Posts;
