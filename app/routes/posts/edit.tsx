@@ -23,8 +23,6 @@ export async function action({ request, params }: Route.ActionArgs) {
 const EditPost = ({}: Route.ComponentProps) => {
   const post = useLoaderData<typeof loader>();
 
-  console.log("post", post);
-
   return (
     <div className="flex items-center w-full justify-center min-h-screen">
       <Form method="post" className="min-w-2xl mx-auto">
