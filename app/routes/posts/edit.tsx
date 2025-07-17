@@ -20,7 +20,7 @@ export async function action({ request, params }: Route.ActionArgs) {
   return redirect("/posts");
 }
 
-const EditPost = ({}: Route.ComponentProps) => {
+const EditPost = (props: Route.ComponentProps) => {
   const post = useLoaderData<typeof loader>();
 
   return (

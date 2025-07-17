@@ -1,6 +1,6 @@
 import { Link, useLoaderData } from "react-router";
 import { getPosts } from "~/models/post.model";
-import type { Route } from "./+types";
+import type { Route } from "./+types/list";
 
 export async function loader() {
   return getPosts();
