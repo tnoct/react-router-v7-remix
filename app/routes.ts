@@ -19,8 +19,7 @@ export default [
     ...prefix("users", [
       index("routes/users/list.tsx"),
       route(":id", "routes/users/edit.tsx"),
-      route(":id/delete", "routes/users/delete.tsx"), // delete one post. this route have action only and when the action completed the server return with the redirect url of posts list.
-
+      route(":id/delete", "routes/users/delete.tsx"), // delete one user. this route have action only and when the action completed the server return with the redirect url of users list.
       route("create", "routes/users/create.tsx"),
     ]),
   ]),
