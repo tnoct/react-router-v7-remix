@@ -27,4 +27,9 @@ async function updatePost(title: string, content: string, id: number) {
   });
 }
 
-export { getPosts, getPost, createPost, updatePost };
+async function deletePost(params: { id: number }) {
+  const { id } = params;
+  return prisma.post.delete({ where: { id: id } });
+}
+
+export { getPosts, getPost, createPost, updatePost, deletePost };

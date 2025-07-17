@@ -12,12 +12,15 @@ export default [
   route("posts", "layouts/posts/layout.tsx", [
     index("routes/posts/list.tsx"), // Start the Post page, open by default on hitting localhost:port/posts
     route(":id", "routes/posts/edit.tsx"), // Show one post.
+    route(":id/delete", "routes/posts/delete.tsx"), // delete one post. this route have action only and when the action completed the server return with the redirect url of posts list.
     route("create", "routes/posts/create.tsx"),
   ]),
   layout("layouts/users/layout.tsx", [
     ...prefix("users", [
       index("routes/users/list.tsx"),
       route(":id", "routes/users/edit.tsx"),
+      route(":id/delete", "routes/users/delete.tsx"), // delete one post. this route have action only and when the action completed the server return with the redirect url of posts list.
+
       route("create", "routes/users/create.tsx"),
     ]),
   ]),

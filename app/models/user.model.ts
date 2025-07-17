@@ -26,4 +26,9 @@ const updateUser = async (params: {
   });
 };
 
-export { getUsers, createUser, getUser, updateUser };
+async function deleteUser(params: { id: number }) {
+  const { id } = params;
+  return prisma.user.delete({ where: { id: id } });
+}
+
+export { getUsers, createUser, getUser, updateUser, deleteUser };
