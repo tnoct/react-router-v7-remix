@@ -9,4 +9,21 @@ const createUser = async (params: { name: string; email: string }) => {
   return await prisma.user.create({ data: { name: name, email: email } });
 };
 
-export { getUsers, createUser };
+const getUser = async (params: { id: number }) => {
+  const { id } = params;
+  return prisma.user.findUnique({ where: { id: id as number } });
+};
+
+const updateUser = async (params: {
+  id: number;
+  name: string;
+  email: string;
+}) => {
+  const { id, email, name } = params;
+  return prisma.user.update({
+    where: { id: id },
+    data: { email: email, name: name },
+  });
+};
+
+export { getUsers, createUser, getUser, updateUser };

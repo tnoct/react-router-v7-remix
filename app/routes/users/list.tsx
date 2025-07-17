@@ -43,6 +43,9 @@ const List = (props: Route.ComponentProps) => {
                     })}
                   </ol>
                 </td>
+                <td>
+                  <Link to={`/users/${id}`}>Open User</Link>
+                </td>
               </tr>
             );
           })}

@@ -1,5 +1,14 @@
-import { Form } from "react-router";
+import { Form, redirect } from "react-router";
 import type { Route } from "./+types/create";
+import { createUser } from "~/models/user.model";
+
+export async function action({ request }: Route.ActionArgs) {
+  const formData = await request.formData();
+  const name = formData.get("name");
+  const email = formData.get("email");
+  await createUser({ email: email as string, name: name as string });
+  return redirect("/users");
+}
 
 const Create = (props: Route.ComponentProps) => {
   return (
