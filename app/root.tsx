@@ -7,6 +7,9 @@ import {
   ScrollRestoration,
   useNavigation,
 } from "react-router";
+import { config } from "dotenv";
+
+config();
 
 import type { Route } from "./+types/root";
 import "./app.css";
