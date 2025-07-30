@@ -9,7 +9,10 @@ export async function loader(args: Route.LoaderArgs) {
   );
 }
 
-const Companies = (props: Route.ComponentProps) => {
+/* Reference artical : https://reactrouter.com/start/framework/data-loading#static-data-loading */
+export async function clientLoader(args: Route.ClientLoaderArgs) {}
+
+const Companies = ({}: Route.ComponentProps) => {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
