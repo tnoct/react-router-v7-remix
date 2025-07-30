@@ -104,7 +104,7 @@ const EditPost = (props: Route.ComponentProps) => {
 
 export async function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   console.log("Error : ", Error);
-  return <p>Ops Something went wrong!</p>;
+  return <p>Ops Something went wrong! while editing the post</p>;
 }
 
 export default EditPost;

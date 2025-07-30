@@ -9,7 +9,7 @@ import {
 } from "react-router";
 import { config } from "dotenv";
 
-config();
+if (process.env.ENV !== "production") config();
 
 import type { Route } from "./+types/root";
 import "./app.css";

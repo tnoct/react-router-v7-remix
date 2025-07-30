@@ -1,8 +1,17 @@
-import React from "react";
+import type { Route } from "../+types";
 
-type Props = {};
+export async function loader(args: Route.LoaderArgs) {
+  console.log(
+    "This will run on server side during the build with pre-rendering"
+  );
+  console.log(
+    "As this Route was defined as pre-rendered in react-router.config.ts."
+  );
+}
 
-const Invention = (props: Props) => {
+export async function clientLoader({}: Route.ClientLoaderArgs) {}
+
+const Invention = (props: Route.ComponentProps) => {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">

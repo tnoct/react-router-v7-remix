@@ -1,8 +1,15 @@
-import React from "react";
+import type { Route } from "../+types";
 
-type Props = {};
+export async function loader(args: Route.LoaderArgs) {
+  console.log(
+    "This will run on server side during the build with pre-rendering"
+  );
+  console.log(
+    "As this Route was defined as pre-rendered in react-router.config.ts."
+  );
+}
 
-const Companies = (props: Props) => {
+const Companies = (props: Route.ComponentProps) => {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
